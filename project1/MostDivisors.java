@@ -22,19 +22,19 @@ public class MostDivisors {
 		}
 	}
 	
-	// returns the lowest integer with the most divisors based on initial input
+	// returns the highest integer with the most divisors based on initial input
 	public int getMost()
 	{
 		return getMost(input);
 	}
 	
-	// returns the lowest integer with the most divisors
+	// returns the highest integer with the most divisors between 1 and x
 	public int getMost(int x) {
 		int most = 1;
 		
 		for (int i = 1; i <= x; i++)
 		{
-			if(getDivisors(most).length() < getDivisors(i).length())
+			if(getDivisors(most).length() <= getDivisors(i).length())
 			{
 				most = i;
 			}
@@ -64,7 +64,22 @@ public class MostDivisors {
 		return divisors;
 	}
 	
+	public String toString()
+	{
+		return String.format("Input: %d\t\tDivisors: %s\t\tMost: %d\t\tDivisors: %s",
+					input, getDivisors(input), getMost(), getDivisors());
+	}
+	
 	public static void main(String args[])
 	{
+		MostDivisors test = new MostDivisors(10);
+		
+		System.out.printf("%s\n", test);
+		
+		for(int i = 0; i < 10; i++)
+		{
+			test.setN(i);
+			System.out.printf("%s\n", test);
+		}
 	}
 }
