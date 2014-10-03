@@ -61,12 +61,12 @@ public class MostDivisors {
 			}
 		}
 		
-		return divisors;
+		return divisors.trim();
 	}
 	
 	public String toString()
 	{
-		return String.format("Input: %d\t\tDivisors: %s\t\tMost: %d\t\tDivisors: %s",
+		return String.format("Input: %d\tDivisors: %s\tMost: %d\tDivisors: %s",
 					input, getDivisors(input), getMost(), getDivisors());
 	}
 	
