@@ -9,7 +9,16 @@ public class RomanNumeral {
 	// Minimum number that can be calculated
 	private static int min = 0;
 	
-	private enum
+	private static String[] romans =	{
+						"I", "IV", "V", "IX", "X",
+						"XL", "L", "XC", "C",
+						"CD", "D", "CM", "M"
+						};
+	private static int[] rvals =	{
+					1, 4, 5, 9, 10,
+					40, 50, 90, 100,
+					400, 500, 900, 1000
+					};
 	
 	public RomanNumeral(int integerValue)
 	{
@@ -34,15 +43,24 @@ public class RomanNumeral {
 		
 		if(integerValue >= min || integerValue <= max)
 		{
+			int value = toInt();
+			for(int i = romans.length - 1; i >= 0; i--)
+			{
+				while(rvals[i] <= value)
+				{
+					tmp += romans[i];
+					value -= rvals[i];
+				}
+			}
 		}
 		else
 		{
-			tmp = UNDEFINED;
+			tmp += UNDEFINED;
 		}
 		
-		return tmp;	
+		return tmp;
 	}
-	
+		
 	public int toInt()
 	{
 		return integerValue;
@@ -51,7 +69,7 @@ public class RomanNumeral {
 	// Return 1 if greater than r, 0 if equal, -1 otherwise
 	public int compareTo(RomanNumeral r)
 	{
-		int value = null;
+		int value;
 		
 		if(toInt() > r.toInt())
 		{
@@ -67,5 +85,18 @@ public class RomanNumeral {
 		}
 		
 		return value;
+	}
+	
+	public static void main(String args[])
+	{
+		RomanNumeral r1 = new RomanNumeral(5);
+		RomanNumeral r2 = new RomanNumeral(0);
+		
+		for(int i  = min - 1; i < max + 1; i++)
+		{
+			r2.setIntegerValue(i);
+			System.out.printf("Number: %d\tObject: %d %s\tCompareTo5: %d\n",
+				i, r2.toInt(), r2, r2.compareTo(r1));
+		}	
 	}
 }
